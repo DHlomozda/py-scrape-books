@@ -9,7 +9,8 @@ import scrapy
 class Book(scrapy.Item):
     title = scrapy.Field()
     price = scrapy.Field()
-    amount_in_black = scrapy.Field()
+    amount_in_stock = scrapy.Field()
     rating = scrapy.Field()
     category = scrapy.Field()
     description = scrapy.Field()
+    upc = scrapy.Field()

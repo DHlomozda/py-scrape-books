@@ -1,5 +1,7 @@
 import scrapy
 
+from scrape_book.items import Book
+
 
 class BookSpider(scrapy.Spider):
     name = "books"
@@ -66,12 +68,12 @@ class BookSpider(scrapy.Spider):
 
         book_item['upc'] = response.css("table.table.table-striped tr:nth-child(1) td::text").get().strip()
 
-        yield {
-            'title': book_item['title'],
-            'price': book_item['price'],
-            'amount_in_stock': book_item['amount_in_stock'],
-            'rating': book_item['rating'],
-            'category': book_item['category'],
-            'description': book_item['description'],
-            'upc': book_item['upc'],
-        }
+        yield Book(
+            title=book_item['title'],
+            price=book_item['price'],
+            amount_in_stock=book_item['amount_in_stock'],
+            rating=book_item['rating'],
+            category=book_item['category'],
+            description=book_item['description'],
+            upc=book_item['upc'],
+        )
